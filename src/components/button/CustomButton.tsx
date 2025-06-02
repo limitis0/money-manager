@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import classes from './CustomButton.module.scss';
-import { color, btnSize, btnVariant } from '../../styles/muiVariables';
+import { color, size, variant } from '../../styles/muiVariables';
 
 type CustomButtonProps = {
   btnText: string;
@@ -17,12 +17,12 @@ export function CustomButton({
   const handleBtnSizeString = () => {
     switch (btnSizeProp) {
       case 'l':
-        return btnSize.large;
+        return size.large;
       case 's':
-        return btnSize.small;
+        return size.small;
 
       default:
-        return btnSize.large;
+        return size.large;
     }
   };
 
@@ -44,7 +44,7 @@ export function CustomButton({
       <Button
         size={handleBtnSizeString()}
         color={handleBtnColorProp()}
-        variant={btnVariant.contained}>
+        variant={variant.contained}>
         {btnText}
       </Button>
     </div>

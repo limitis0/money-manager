@@ -8,13 +8,18 @@ export const color = {
   warning: 'warning',
 } as const;
 
-export const btnSize = {
+export const size = {
   large: 'large',
   small: 'small',
 } as const;
 
-export const btnVariant = {
+export const variant = {
   contained: 'contained',
   outlined: 'outlined',
   text: 'text',
+  circular: 'circular',
 } as const;
+
+export const state = {
+  enabled: 'enabled',
+};
