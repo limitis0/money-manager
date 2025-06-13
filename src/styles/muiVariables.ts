@@ -18,6 +18,7 @@ export const variant = {
   outlined: 'outlined',
   text: 'text',
   circular: 'circular',
+  filled: 'filled',
 } as const;
 
 export const state = {

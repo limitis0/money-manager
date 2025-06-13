@@ -9,26 +9,64 @@ import {
   // Icon,
   // IconButton,
   Paper,
+  Typography,
 } from '@mui/material';
 import classes from './MoneyCard.module.scss';
 import { color, size, variant } from '../../styles/muiVariables';
-import type { MoneyCard } from '../../utils/types';
+import type { MoneyCardType } from '../../utils/types';
+import { orange, grey } from '@mui/material/colors';
 
 type MoneyCardProps = {
-  cardData: MoneyCard;
+  cardData: MoneyCardType;
 };
 
 export function MoneyCard({ cardData }: MoneyCardProps) {
+  const handleIsIncome = () => (cardData.isIncome ? '收' : '支');
+
+  const handleBgColor = () => {
+    switch (cardData.recurrentData.recurrentState) {
+      case 'due':
+        return orange[100];
+      case 'pause':
+        return grey[300];
+      default:
+        return grey[100];
+    }
+  };
+
   return (
     <div className={classes.container}>
       <Card
         variant={variant.outlined}
         square>
-        <Paper elevation={0}>
+        <Paper
+          elevation={0}
+          sx={{
+            backgroundColor: handleBgColor(),
+          }}>
           <CardHeader
             className={classes.cardHeader}
-            title={`${cardData.amount}`}
-            subheader={`${cardData.date.month}/${cardData.date.day}/${cardData.date.year}`}
+            title={`${cardData.currency} ${cardData.amount.toLocaleString()}`}
+            subheader={
+              <Box>
+                <Chip
+                  size={size.small}
+                  variant={variant.filled}
+                  label={cardData.category.text}
+                  sx={{
+                    my: 0.5,
+                    backgroundColor: cardData.category.themeColor,
+                    color: '#FFF',
+                  }}
+                />
+                <Typography
+                  variant="body2"
+                  color="text.secondary">
+                  {`${cardData.date.month}/${cardData.date.day}/${cardData.date.year}`}
+                </Typography>
+              </Box>
+            }
+            // subheader={`${cardData.date.month}/${cardData.date.day}/${cardData.date.year}`}
             action={
               <Box
                 sx={{
@@ -37,11 +75,11 @@ export function MoneyCard({ cardData }: MoneyCardProps) {
                   height: '72px',
                   marginLeft: '-48px',
                 }}>
-                <Avatar variant={variant.circular}>{cardData.isIncome}</Avatar>
+                <Avatar variant={variant.circular}>{handleIsIncome()}</Avatar>
               </Box>
             }
           />
-          <CardContent>備注：******</CardContent>
+          <CardContent>備注：{cardData.note}</CardContent>
           <CardActions>
             <Chip
               size={size.small}
