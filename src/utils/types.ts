@@ -42,6 +42,7 @@ export type InstallmentData = {
     year: string;
   };
 };
+
 export type RecurrentData = {
   isRecurrent: boolean;
   recurrentPeriod: string; // none | month | year
@@ -52,3 +53,16 @@ export type RecurrentData = {
     year: string;
   };
 };
+
+export type PieChartItem = {
+  title: string;
+  value: number;
+};
+export type PieChartData = PieChartItem[];
+
+export type LineChartItem = {
+  month: string;
+  income: number;
+  expense: number;
+};
+export type LineChartData = LineChartItem[];
