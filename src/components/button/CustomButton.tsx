@@ -6,12 +6,14 @@ type CustomButtonProps = {
   btnText: string;
   btnSizeProp: string;
   btnColorProp: string;
+  btnAction: () => void; // no prop, no rt
 };
 
 export function CustomButton({
   btnText,
   btnSizeProp,
   btnColorProp,
+  btnAction,
 }: CustomButtonProps) {
   // const btnText = 'btnText';
   const handleBtnSizeString = () => {
@@ -44,7 +46,8 @@ export function CustomButton({
       <Button
         size={handleBtnSizeString()}
         color={handleBtnColorProp()}
-        variant={variant.contained}>
+        variant={variant.contained}
+        onClick={btnAction}>
         {btnText}
       </Button>
     </div>
